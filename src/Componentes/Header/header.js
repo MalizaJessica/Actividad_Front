@@ -22,7 +22,7 @@ export const Header = () => {
 
     return (
         <header>
-            {/* // <div>
+          {/* // <div>
         //     <h1>Header</h1>
         //     <di className="menu">
         //         <box-icon name="menu"></box-icon>
@@ -39,12 +39,16 @@ export const Header = () => {
             <ul>
                 <li>
                     {/* ya no utilizamos a href ahora tlizamos link */}
-                    {/* <a href="#">Inicio</a> */ }
+                    {/* <a href="#">Inicio</a> */}
                     <Link to="/">INICIO </Link>
                 </li>
                 <li>
                     {/* <a href="#">Productos</a> */}
                     <Link to="/productos">Productos</Link>
+                </li>
+                <li>
+                    {/* <a href="#">Productos</a> */}
+                    <Link to="/nosotros">Nosotros</Link>
                 </li>
             </ul>
             <div className="cart" onClick={toogleMenu}>
@@ -54,5 +58,6 @@ export const Header = () => {
             </div>
 
         </header>
-    )
+    );
 }
+export default Header;

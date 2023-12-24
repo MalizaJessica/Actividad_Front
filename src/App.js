@@ -9,7 +9,7 @@ import { Paginas } from "./Componentes/paginas.js";
 import {ProvedorDatos} from "./context/provedorDatos.js";
 //import { ProductosLista } from "./Componentes/Productos/productos.js";
 import { Carrito } from "./Componentes/Carrito/carrito.js";
-
+import { Nosotros } from "./Componentes/Nosotros/nosotros.js";
 //App es nuestro componenete padre
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Header />
         <Carrito/>
         <Paginas />
-     
+        <Nosotros />    
 
       </Router>
      

@@ -7,7 +7,8 @@ export const ProductoItem = ({
     title,
     price,
     image,
-    category
+    category,
+    cantidad
 }) => {
     console.log(image)
 

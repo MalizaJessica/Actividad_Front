@@ -1,64 +1,92 @@
 import React, { useContext } from "react";
-import Cart from "../imagenes/aplee.jpeg";
-import {Link} from "react-router-dom"
+import 'boxicons';
 import { DataContext } from "../../context/provedorDatos";
 
-//empesamos utilizadon UseContext
-export const Header= ()=>{
+export const Carrito = () => {
     const value = useContext(DataContext);
     const [menu, setMenu] = value.menu;
-    const [total] = value.total;
-
-    console.log(menu)
-
-    const toogleMenu = () =>{
-        setMenu(!menu)
-    }
+    const [carrito, setCarrito] = value.carrito;
+    //const [total] = value.total;
+   // const total=[total];
     
 
-}
+    const tooglefalse = () => {
+        setMenu(false);
+    };
 
+    const increase = (id) => {
+        const updatedCarrito = carrito.map(item =>
+            item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+        );
+        setCarrito(updatedCarrito);
+    };
 
+    const reduce = (id) => {
+        const updatedCarrito = carrito.map(item =>
+            item.id === id && item.cantidad > 1 ? { ...item, cantidad: item.cantidad - 1 } : item
+        );
+        setCarrito(updatedCarrito);
+    };
 
+    const removeProducto = (id) => {
+        if (window.confirm("¿Quieres suspender el producto?")) {
+            const updatedCarrito = carrito.filter(item => item.id !== id);
+            setCarrito(updatedCarrito);
+        }
+    };
 
+    const show1 = menu ? "carritos show" : "carritos";
+    const show2 = menu ? "carrito show" : "carrito";
 
-
-//progra normal
-export const Carrito = () => {
     return (
-        <div className="carritos show">
-            <div className="carrito show">
-                <br /><br /><br /><br /><br /><br />
-                <div className="carrito_close">
+        <div className={show1}>
+            <div className={show2}>
+                <div className="carrito_close" onClick={tooglefalse}>
                     <box-icon name="x"></box-icon>
                 </div>
-                <h2>Su carrito</h2>
+                <h2>Su Carrito</h2>
                 <div className="carrito_center">
-                    <div className="carrito_item">
-                        <img src={Cart} alt=""></img>
-                        <div>
-                            <h3>title</h3>
-                            <p className="price">$345</p>
-                        </div>
-
-                        <div>
-                            <box-icon name="up-arrow" type="solid"></box-icon>
-                            <p className="cantidad">1</p>
-                            <box-icon name="down-arrow" type="solid"></box-icon>
-                        </div>
-                        <div className="remove_item">
-                            <box-icon name="trash"></box-icon>
-
-                        </div>
-                    </div>
+                    {carrito.length === 0 ? (
+                        <h2 style={{ textAlign: "center", fontSize: "3rem" }}>Carrito Vacio</h2>
+                    ) : (
+                        <>
+                            {carrito.map((producto) => (
+                                <div className="carrito_item" key={producto.id}>
+                                    <img src={producto.image} alt={producto.title} />
+                                    <div>
+                                        <h3>{producto.title}</h3>
+                                        <p className="price">${producto.price}</p>
+                                    </div>
+                                    <div>
+                                        <box-icon
+                                            onClick={() => increase(producto.id)}
+                                            name="up-arrow"
+                                            type="solid"
+                                        />
+                                        <p className="cantidad">{producto.cantidad}</p>
+                                        <box-icon
+                                            onClick={() => reduce(producto.id)}
+                                            name="down-arrow"
+                                            type="solid"
+                                        />
+                                    </div>
+                                    <div
+                                        onClick={() => removeProducto(producto.id)}
+                                        className="remove_item"
+                                    >
+                                        <box-icon name="trash" />
+                                    </div>
+                                </div>
+                            ))}
+                        </>
+                    )}
                 </div>
 
                 <div className="carrito_footer">
-                    <h3>Total:$233</h3>
-                    <button className="btn">Pago</button>
-
+                    <h3>Total: $333</h3>
+                    <button className="btn">Payment</button>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

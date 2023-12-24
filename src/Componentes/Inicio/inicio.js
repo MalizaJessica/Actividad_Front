@@ -8,11 +8,12 @@ export const Inicio=()=>{
         <div className="inicio"> 
             <Link to="/">
                 <h1 className="title">Inicio</h1>
+                <p>La tienda en linea se trata de mejorar el acceso a los clientes</p>
             </Link>
             <Link to="/productos">
             <h1 className="title">Productos</h1>
             </Link>
-            <Link to="/productos">
+            <Link to="/nosotros">
             <h1 className="title">Nosotros</h1>
             </Link>
             <img src={Portada} alt="inicio"></img>

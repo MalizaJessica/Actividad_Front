@@ -6,7 +6,8 @@ export const DataContext = createContext();
 export const ProvedorDatos = (props) => {
     const [productos, setProductos] = useState([])
     const [menu, setMenu] = useState(false);
-    const [carrito, setCarrito] = useState([])
+    const [carrito, setCarrito] = useState([]);
+    
     //datos locales
     // useEffect(() => { 
     //     const producto = Data.items
@@ -66,10 +67,14 @@ export const ProvedorDatos = (props) => {
     useEffect(() => {
         const dataCarrito = JSON.parse(localStorage.getItem('dataCarrito'))//verificamos si hay algo en el carrito
         //creacion de una condicion, para que si ese dato existe se guarde a carrito
+        // si ya existe para que se guarde
         if (dataCarrito) {
             setCarrito(dataCarrito)
         }
     }, [])
+    useEffect(()=>{
+        localStorage.setItem('dataCarrito', JSON.stringify(carrito))
+    },[carrito])
 
     const value = {
         productos: [productos],

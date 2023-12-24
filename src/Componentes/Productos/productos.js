@@ -5,7 +5,7 @@ import { ProductoItem } from "./productoItem";
 export const ProductosLista = () => {
 
     const value = useContext(DataContext)
-    const [productos] = value.productos
+    const productos = value.productos[0]
     //  const [productos, setProductos] = useState([]);
 
     console.log(productos)
@@ -25,6 +25,7 @@ export const ProductosLista = () => {
                             price={producto.price}
                             image={producto.image}
                             category={producto.category}
+                            cantidad={producto.cantidad}
                         />
                     ))
                 ) : (
